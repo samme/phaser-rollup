@@ -1,5 +1,5 @@
 {
-  "name": "rollup-starter-app",
+  "name": "phaser-rollup",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^7.0.0",
@@ -16,5 +16,17 @@
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",
     "start": "serve public"
-  }
+  },
+  "description": "Rollup with Phaser 3",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samme/phaser-rollup.git"
+  },
+  "author": "samme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samme/phaser-rollup/issues"
+  },
+  "homepage": "https://github.com/samme/phaser-rollup#readme"
 }
