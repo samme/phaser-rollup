@@ -2,6 +2,8 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
+import url from '@rollup/plugin-url';
+import alias from '@rollup/plugin-alias';
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
@@ -11,20 +13,31 @@ export default {
 	input: 'src/main.js',
 	output: {
 		file: 'public/bundle.js',
-		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
-		sourcemap: true
+		format: 'iife', // suitable for <script> tags
+		sourcemap: false
 	},
 	plugins: [
 		replace({
 			'typeof CANVAS_RENDERER': JSON.stringify(true),
-			'typeof WEBGL_RENDERER': JSON.stringify(true),
-			'typeof EXPERIMENTAL': JSON.stringify(true),
+			'typeof WEBGL_RENDERER': JSON.stringify(false),
+			'typeof EXPERIMENTAL': JSON.stringify(false),
 			'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
 			'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
-			'typeof FEATURE_SOUND': JSON.stringify(true)
+			'typeof FEATURE_SOUND': JSON.stringify(false)
 		}),
-		resolve(), // tells Rollup how to find date-fns in node_modules
-		commonjs(), // converts date-fns to ES modules
+		resolve(), // find packages in node_modules
+		commonjs(), // convert 'phaser' to ES modules
+		alias({
+			entries: {
+				phaser: './node_modules/phaser/src/phaser'
+				// phaser: './node_modules/phaser/src/phaser-arcade-physics'
+				// phaser: './node_modules/phaser/src/phaser-core'
+			}
+		}),
+		url({
+			fileName: '[name].[hash][extname]',
+			limit: 0
+		}),
 		production && terser() // minify, but only in production
 	]
 };
