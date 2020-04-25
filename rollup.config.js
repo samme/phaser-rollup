@@ -4,6 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 import replace from '@rollup/plugin-replace';
 import url from '@rollup/plugin-url';
 import alias from '@rollup/plugin-alias';
+import strip from '@rollup/plugin-strip';
 
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
@@ -19,11 +20,11 @@ export default {
 	plugins: [
 		replace({
 			'typeof CANVAS_RENDERER': JSON.stringify(true),
-			'typeof WEBGL_RENDERER': JSON.stringify(false),
 			'typeof EXPERIMENTAL': JSON.stringify(false),
+			'typeof FEATURE_SOUND': JSON.stringify(false),
 			'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
 			'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
-			'typeof FEATURE_SOUND': JSON.stringify(false)
+			'typeof WEBGL_RENDERER': JSON.stringify(false)
 		}),
 		resolve(), // find packages in node_modules
 		commonjs(), // convert 'phaser' to ES modules
@@ -35,9 +36,11 @@ export default {
 			}
 		}),
 		url({
+			include: '**/assets/**/*',
 			fileName: '[name].[hash][extname]',
 			limit: 0
 		}),
+		production && strip(),
 		production && terser() // minify, but only in production
 	]
 };
