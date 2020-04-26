@@ -9,7 +9,7 @@ Clone or download this repository and install its dependencies:
 ```bash
 git clone https://github.com/samme/phaser-rollup.git my-phaser-game
 # OR
-npx degit "rollup/samme/phaser-rollup" my-phaser-game
+npx degit "samme/phaser-rollup" my-phaser-game
 
 cd my-phaser-game
 npm install
