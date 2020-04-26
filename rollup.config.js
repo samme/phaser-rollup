@@ -9,38 +9,40 @@ import strip from '@rollup/plugin-strip';
 // `npm run build` -> `production` is true
 // `npm run dev` -> `production` is false
 const production = !process.env.ROLLUP_WATCH;
+const on = JSON.stringify(true);
+const off = JSON.stringify(false);
 
 export default {
-	input: 'src/main.js',
-	output: {
-		file: 'public/bundle.js',
-		format: 'iife', // suitable for <script> tags
-		sourcemap: false
-	},
-	plugins: [
-		replace({
-			'typeof CANVAS_RENDERER': JSON.stringify(true),
-			'typeof EXPERIMENTAL': JSON.stringify(false),
-			'typeof FEATURE_SOUND': JSON.stringify(false),
-			'typeof PLUGIN_CAMERA3D': JSON.stringify(false),
-			'typeof PLUGIN_FBINSTANT': JSON.stringify(false),
-			'typeof WEBGL_RENDERER': JSON.stringify(false)
-		}),
-		resolve(), // find packages in node_modules
-		commonjs(), // convert 'phaser' to ES modules
-		alias({
-			entries: {
-				phaser: './node_modules/phaser/src/phaser'
-				// phaser: './node_modules/phaser/src/phaser-arcade-physics'
-				// phaser: './node_modules/phaser/src/phaser-core'
-			}
-		}),
-		url({
-			include: '**/assets/**/*',
-			fileName: '[name].[hash][extname]',
-			limit: 0
-		}),
-		production && strip(),
-		production && terser() // minify, but only in production
-	]
+  input: 'src/main.js',
+  output: {
+    file: 'public/bundle.js',
+    format: 'iife', // suitable for <script> tags
+    sourcemap: false
+  },
+  plugins: [
+    replace({
+      'typeof CANVAS_RENDERER': on,
+      'typeof EXPERIMENTAL': off,
+      'typeof FEATURE_SOUND': off,
+      'typeof PLUGIN_CAMERA3D': off,
+      'typeof PLUGIN_FBINSTANT': off,
+      'typeof WEBGL_RENDERER': off
+    }),
+    resolve(), // find packages in node_modules
+    commonjs(), // convert 'phaser' to ES modules
+    alias({
+      entries: {
+        phaser: './node_modules/phaser/src/phaser'
+        // phaser: './node_modules/phaser/src/phaser-arcade-physics'
+        // phaser: './node_modules/phaser/src/phaser-core'
+      }
+    }),
+    url({
+      include: '**/assets/**/*',
+      fileName: '[name].[hash][extname]',
+      limit: 0
+    }),
+    production && strip(),
+    production && terser() // minify, but only in production
+  ]
 };
