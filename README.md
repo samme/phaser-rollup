@@ -26,7 +26,7 @@ Custom Phaser
 
 Set build constants in `rollup.config.js` **before** you start rollup.
 
-Modify <src/phaser-custom.js>.
+Modify [src/phaser-custom.js](src/phaser-custom.js).
 
 TODO
 ----
