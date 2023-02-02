@@ -7,9 +7,9 @@ Getting started
 Clone or download this repository and install its dependencies:
 
 ```bash
-git clone https://github.com/samme/phaser-rollup.git my-phaser-game
+git clone -b custom/phaser-v3.55.2 https://github.com/samme/phaser-rollup.git my-phaser-game
 # OR
-npx degit "samme/phaser-rollup" my-phaser-game
+npx degit 'samme/phaser-rollup#custom/phaser-v3.55.2' my-phaser-game
 
 cd my-phaser-game
 npm install
@@ -21,10 +21,12 @@ npm run dev
 - `npm run watch` will continually rebuild the application as your source files change.
 - `npm run dev` will run `npm start` and `npm run watch` in parallel.
 
-Phaser
-------
+Custom Phaser
+-------------
 
-Set build constants in `rollup.config.js`.
+Set build constants in `rollup.config.js` **before** you start rollup.
+
+Modify <src/phaser-custom.js>.
 
 TODO
 ----
