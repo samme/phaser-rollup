@@ -26,7 +26,7 @@ export default {
       'typeof FEATURE_SOUND': off,
       'typeof PLUGIN_CAMERA3D': off,
       'typeof PLUGIN_FBINSTANT': off,
-      'typeof WEBGL_RENDERER': off
+      'typeof WEBGL_RENDERER': on
     }),
     resolve(), // find packages in node_modules
     commonjs(), // convert 'phaser' to ES modules
