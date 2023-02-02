@@ -22,9 +22,7 @@ export default {
   plugins: [
     alias({
       entries: {
-        phaser: './node_modules/phaser/src/phaser.js'
-        // phaser: './node_modules/phaser/src/phaser-arcade-physics.js'
-        // phaser: './node_modules/phaser/src/phaser-core.js'
+        phaser: './src/phaser-custom.js'
       }
     }),
     replace({
