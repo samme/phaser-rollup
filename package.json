@@ -20,7 +20,7 @@
     "serve": "^11.0.2"
   },
   "dependencies": {
-    "phaser": "^3.22.0"
+    "phaser": "3.55.2"
   },
   "scripts": {
     "build": "rollup -c",
