@@ -20,6 +20,13 @@ export default {
     sourcemap: false
   },
   plugins: [
+    alias({
+      entries: {
+        phaser: './node_modules/phaser/src/phaser.js'
+        // phaser: './node_modules/phaser/src/phaser-arcade-physics.js'
+        // phaser: './node_modules/phaser/src/phaser-core.js'
+      }
+    }),
     replace({
       'typeof CANVAS_RENDERER': on,
       'typeof EXPERIMENTAL': off,
@@ -30,13 +37,6 @@ export default {
     }),
     resolve(), // find packages in node_modules
     commonjs(), // convert 'phaser' to ES modules
-    alias({
-      entries: {
-        phaser: './node_modules/phaser/src/phaser'
-        // phaser: './node_modules/phaser/src/phaser-arcade-physics'
-        // phaser: './node_modules/phaser/src/phaser-core'
-      }
-    }),
     url({
       include: '**/assets/**/*',
       fileName: '[name].[hash][extname]',
