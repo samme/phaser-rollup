@@ -24,7 +24,17 @@ npm run dev
 Phaser
 ------
 
-Set build constants in `rollup.config.js`.
+Set build constants in `replace()` in `rollup.config.js`.
+
+Copy and modify `node_modules/phaser/src/phaser.js`, then alias `phaser` in `rollup.config.js`:
+
+```js
+alias({
+  entries: {
+    phaser: 'src/phaser-custom.js'
+  }
+})
+```
 
 TODO
 ----
