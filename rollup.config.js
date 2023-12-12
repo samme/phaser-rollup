@@ -43,6 +43,6 @@ export default {
       limit: 0
     }),
     production && strip(),
-    production && terser() // minify, but only in production
+    production && terser({ output: { comments: false } }) // minify, but only in production
   ]
 };
